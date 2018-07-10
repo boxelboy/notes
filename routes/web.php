@@ -12,6 +12,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'NotesController@index');
+
+Route::get('/newnote', 'NotesController@showForm');
+
+Route::get('/edit/{id}', 'NotesController@showForm');
+
+Route::delete('/delete/{id}', 'NotesController@delete');
+
+Route::post('/edit', 'NotesController@edit');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
 });
+
+Route::post('/login', 'LoginController@authenticate');
+
+Route::get('/notes', 'NotesController@get');
+
+Route::get('/notes/{id}','NotesController@get');
